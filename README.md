@@ -1,4 +1,4 @@
-### DataCamp Introduction To R
+## DataCamp Introduction To R
 
 https://www.datacamp.com/courses/free-introduction-to-r
 
