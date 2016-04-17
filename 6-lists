@@ -1,0 +1,130 @@
+# DataCamp introduction to R
+# Chapter 6 Lists
+
+
+
+
+# Lists, why would you need them?
+
+# Vectors (one dimensional array): can hold numeric, character or logical values. 
+# The elements in a vector all have the same data type.
+
+# Matrices (two dimensional array): can hold numeric, character or logical values. 
+# The elements in a matrix all have the same data type.
+
+# Data frames (two-dimensional objects): can hold numeric, character or logical values. 
+# Within a column all elements have the same data type, but different columns can be of different data type.
+
+
+
+
+# Lists, why would you need them? (2)
+
+# A list in R is similar to your to-do list at work or school: 
+# the different items on that list most likely differ in length, characteristic, type of activity that has to do be done, …
+# A list in R allows you to gather a variety of objects under one name (that is, the name of the list) in an ordered way. 
+# These objects can be matrices, vectors, data frames, even other lists, etc. 
+# It is not even required that these objects are related to each other in any way.
+# You could say that a list is some kind super data type: you can store practically any piece of information in it!
+
+
+
+
+
+# Creating a list
+
+# Let us create our first list! To construct a list you use the function list():
+
+
+# Vector with numerics from 1 up to 10
+my_vector <- 1:10 
+# Matrix with numerics from 1 up to 9
+my_matrix <- matrix(1:9, ncol = 3)
+# First 10 elements of the built-in data frame 'mtcars'
+my_df <- mtcars[1:10,]
+
+# Construct list with these different elements:
+my_list <- list(my_vector, my_matrix, my_df)
+
+
+
+
+# Creating a named list
+
+names(my_list) <- c("vec", "mat", "df")
+
+
+# Print 'my_list' to the console
+my_list
+
+
+
+
+# Creating a named list (2)
+
+# The vectors 'actors' and 'reviews' are pre-loaded in the workspace
+mov <- "The Shining"
+act <- c("Jack Nicholson", "Shelley Duvall", "Danny Lloyd", "Scatman Crothers", "Barry Nelson")
+
+scores <- c(4.5, 4.0, 5.0)
+sources <- c("IMDB1","IMDb2","IMDb3")
+comments <- c("Best Horror Film I Have Ever Seen", "A truly brilliant and scary film from Stanley Kubrick", "A masterpiece of psychological horror")
+rev <- data.frame(scores,sources,comments)
+
+
+# Create the list 'shining_list'
+shining_list <- list(moviename=mov,actors=act, reviews=rev)
+
+
+
+
+# Selecting elements from a list (grabbing)
+
+# Your list will often be built out of numerous elements and components. 
+# Therefore, getting a single element, multiple elements, or a component out of it is not always straightforward.
+
+# One way to select a component is using the numbered position of that component. 
+# For example, to "grab" the first component of shining_list you type.
+shining_list[[1]]
+
+# You can also refer to the names of the components, with [[ ]] or with the $ sign. 
+# Both will select the data frame representing the reviews:
+shining_list[["reviews"]]
+shining_list$reviews[[1]]
+shining_list$reviews[[1]][1]
+
+# Print out the vector representing the actors
+shining_list$actors
+
+# Print the second element of the vector representing the actors
+shining_list$actors[2]
+
+# 'shining_list' is already pre-loaded in the workspace
+shining_list
+
+# Define 'last_actor'
+last_actor <- shining_list$actors[5]
+
+# Define 'second_review'
+second_review <- shining_list$reviews[2,]
+
+
+
+
+# Adding more movie information to the list
+
+# To conveniently add elements to lists you can use the c() function, that you also used to build vectors:
+ext_list <- c(my_list , my_val)
+
+# This will simply extend the original list, list1, with the component my_val. 
+# This component gets appended to the end of the list. 
+# If you want to give the new list item a name, you just add the name as you did before:
+ext_list <- c(my_list, my_name = my_val)
+
+# 'shining_list', the list containing moviename, actors and reviews, is pre-loaded in the workspace
+
+# We forgot something; add the year to shining_list
+shining_list_full <- c(shining_list, year = 1980)
+
+# Have a look at shining_list_full
+str(shining_list_full)
